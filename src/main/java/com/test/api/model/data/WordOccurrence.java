@@ -11,52 +11,52 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WordOccurrence {
+ 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Column(name = "word")
+	private String word;
 
-    @Column(name = "word")
-    private String word;
+	@Column(name = "count")
+	private Integer count = 0;
 
-    @Column(name = "count")
-    private Integer count = 0;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "file_metrics_id", nullable = false)
+	@JsonIgnore
+	private FileMetrics fileMetrics;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="file_metrics_id", nullable=false)
-    @JsonIgnore
-    private FileMetrics fileMetrics;
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getWord() {
+		return word;
+	}
 
-    public String getWord() {
-        return word;
-    }
+	public void setWord(String word) {
+		this.word = word;
+	}
 
-    public void setWord(String word) {
-        this.word = word;
-    }
+	public Integer getCount() {
+		return count;
+	}
 
-    public Integer getCount() {
-        return count;
-    }
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 
-    public void setCount(Integer count) {
-        this.count = count;
-    }
+	public FileMetrics getFileMetrics() {
+		return fileMetrics;
+	}
 
-    public FileMetrics getFileMetrics() {
-        return fileMetrics;
-    }
-
-    public void setFileMetrics(FileMetrics fileMetrics) {
-        this.fileMetrics = fileMetrics;
-    }
+	public void setFileMetrics(FileMetrics fileMetrics) {
+		this.fileMetrics = fileMetrics;
+	}
 }

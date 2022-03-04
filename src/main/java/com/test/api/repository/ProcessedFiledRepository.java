@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProcessedFiledRepository extends JpaRepository<ProcessedFile, Long> {
-    ProcessedFile findByFileDate(Integer fileDate);
+	ProcessedFile findByFileDate(Integer fileDate);
 }
+ 

@@ -5,90 +5,95 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class CommunicationDTO {
-    @SerializedName("message_type")
-    private String messageType;
-    private String timestamp;
-    private String origin;
-    private String destination;
-    private String duration;
-    @SerializedName("status_code")
-    private String statusCode;
-    @SerializedName("status_description")
-    private String statusDescription;
-    @SerializedName("message_content")
-    private String messageContent;
-    @SerializedName("message_status")
-    private String messageStatus;
+	@SerializedName("message_type")
+	private String messageType;
+ 
+	private String timestamp;
+	private String origin;
+	private String destination;
+	private String duration;
 
-    public String getMessageType() {
-        return messageType;
-    }
+	@SerializedName("status_code")
+	private String statusCode;
 
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
-    }
+	@SerializedName("status_description")
+	private String statusDescription;
 
-    public String getTimestamp() {
-        return timestamp;
-    }
+	@SerializedName("message_content")
+	private String messageContent;
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+	@SerializedName("message_status")
+	private String messageStatus;
 
-    public String getOrigin() {
-        return origin;
-    }
+	public String getMessageType() {
+		return messageType;
+	}
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
+	}
 
-    public String getDestination() {
-        return destination;
-    }
+	public String getTimestamp() {
+		return timestamp;
+	}
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 
-    public String getDuration() {
-        return duration;
-    }
+	public String getOrigin() {
+		return origin;
+	}
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
 
-    public String getStatusCode() {
-        return statusCode;
-    }
+	public String getDestination() {
+		return destination;
+	}
 
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 
-    public String getStatusDescription() {
-        return statusDescription;
-    }
+	public String getDuration() {
+		return duration;
+	}
 
-    public void setStatusDescription(String statusDescription) {
-        this.statusDescription = statusDescription;
-    }
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
-    public String getMessageContent() {
-        return messageContent;
-    }
+	public String getStatusCode() {
+		return statusCode;
+	}
 
-    public void setMessageContent(String messageContent) {
-        this.messageContent = messageContent;
-    }
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
 
-    public String getMessageStatus() {
-        return messageStatus;
-    }
+	public String getStatusDescription() {
+		return statusDescription;
+	}
 
-    public void setMessageStatus(String messageStatus) {
-        this.messageStatus = messageStatus;
-    }
+	public void setStatusDescription(String statusDescription) {
+		this.statusDescription = statusDescription;
+	}
+
+	public String getMessageContent() {
+		return messageContent;
+	}
+
+	public void setMessageContent(String messageContent) {
+		this.messageContent = messageContent;
+	}
+
+	public String getMessageStatus() {
+		return messageStatus;
+	}
+
+	public void setMessageStatus(String messageStatus) {
+		this.messageStatus = messageStatus;
+	}
 }

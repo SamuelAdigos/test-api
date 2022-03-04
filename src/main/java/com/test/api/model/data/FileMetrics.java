@@ -14,163 +14,181 @@ import java.util.Set;
 @AllArgsConstructor
 public class FileMetrics implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+ 
+	@Column(name = "row_size")
+	private int rowSize;
 
-    @Column(name = "row_size")
-    private int rowSize;
+	@Column(name = "origin_country_codes")
+	private int originCountryCodes;
 
-    @Column(name = "origin_country_codes")
-    private int originCountryCodes;
+	@Column(name = "destination_country_codes")
+	private int destinationCountryCodes;
 
-    @Column(name = "destination_country_codes")
-    private int destinationCountryCodes;
+	@Column(name = "process_duration")
+	private long processDurationMilliseconds;
 
-    @Column(name = "process_duration")
-    private long processDurationMilliseconds;
+	@Column(name = "average_success_calls")
+	private Double successCallsPercentage;
 
-    @Column(name = "average_success_calls")
-    private Double successCallsPercentage;
+	@Column(name = "number_of_calls")
+	private Integer numerOfCalls;
 
-    @Column(name = "number_of_calls")
-    private Integer numerOfCalls;
+	@Column(name = "number_of_messages")
+	private Integer numerOfMessages;
 
-    @Column(name = "number_of_messages")
-    private Integer numerOfMessages;
+	@Column(name = "number_of_origin_country_codes")
+	private Integer differentOriginCountryCodes;
 
-    @Column(name = "number_of_origin_country_codes")
-    private Integer differentOriginCountryCodes;
+	@Column(name = "number_of_origin_destination_codes")
+	private Integer differentDestinationCountryCodes;
 
-    @Column(name = "number_of_origin_destination_codes")
-    private Integer differentDestinationCountryCodes;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "processed_file_id", referencedColumnName = "id")
-    @JsonIgnore
-    private ProcessedFile processedFile;
-    @OneToOne(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
-    private RowErrors rowErrors;
-    @OneToMany(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
-    private Set<CountryCodeData> countryCodeData;
-    @OneToMany(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
-    private Set<WordOccurrence> wordOccurrences;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "processed_file_id", referencedColumnName = "id")
+	@JsonIgnore
+	private ProcessedFile processedFile;
 
-    public Double getSuccessCallsPercentage() {
-        return successCallsPercentage;
-    }
+	@OneToOne(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
+	private RowErrors rowErrors;
 
-    public void setSuccessCallsPercentage(Double successCallsPercentage) {
-        this.successCallsPercentage = successCallsPercentage;
-    }
+	@OneToMany(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
+	private Set<CountryCodeData> countryCodeData;
 
-    public Long getId() {
-        return id;
-    }
+	@OneToMany(mappedBy = "fileMetrics", cascade = CascadeType.ALL)
+	private Set<WordOccurrence> wordOccurrences;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Double getSuccessCallsPercentage() {
+		return successCallsPercentage;
+	}
 
-    public int getRowSize() {
-        return rowSize;
-    }
+	public void setSuccessCallsPercentage(Double successCallsPercentage) {
+		this.successCallsPercentage = successCallsPercentage;
+	}
 
-    public void setRowSize(int rowSize) {
-        this.rowSize = rowSize;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public int getOriginCountryCodes() {
-        return originCountryCodes;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setOriginCountryCodes(int originCountryCodes) {
-        this.originCountryCodes = originCountryCodes;
-    }
+	public int getRowSize() {
+		return rowSize;
+	}
 
-    public int getDestinationCountryCodes() {
-        return destinationCountryCodes;
-    }
+	public void setRowSize(int rowSize) {
+		this.rowSize = rowSize;
+	}
 
-    public void setDestinationCountryCodes(int destinationCountryCodes) {
-        this.destinationCountryCodes = destinationCountryCodes;
-    }
+	public int getOriginCountryCodes() {
+		return originCountryCodes;
+	}
 
-    public long getProcessDurationMilliseconds() {
-        return processDurationMilliseconds;
-    }
+	public void setOriginCountryCodes(int originCountryCodes) {
+		this.originCountryCodes = originCountryCodes;
+	}
 
-    public void setProcessDurationMilliseconds(long processDuration) {
-        this.processDurationMilliseconds = processDuration;
-    }
+	public int getDestinationCountryCodes() {
+		return destinationCountryCodes;
+	}
 
-    public ProcessedFile getProcessedFile() {
-        return processedFile;
-    }
+	public void setDestinationCountryCodes(int destinationCountryCodes) {
+		this.destinationCountryCodes = destinationCountryCodes;
+	}
 
-    public void setProcessedFile(ProcessedFile processedFile) {
-        this.processedFile = processedFile;
-    }
+	public void setOriginAndDestinationCountryCodes(int originCountryCodes, int destinationCountryCodes) {
+		this.originCountryCodes = originCountryCodes;
+		this.destinationCountryCodes = destinationCountryCodes;
+	}
 
-    public RowErrors getRowErrors() {
-        return rowErrors;
-    }
+	public long getProcessDurationMilliseconds() {
+		return processDurationMilliseconds;
+	}
 
-    public void setRowErrors(RowErrors rowErrors) {
-        if (this.rowErrors != null) {
-            this.rowErrors.setFileMetrics(null);
-        }
-        this.rowErrors = rowErrors;
-        rowErrors.setFileMetrics(this);
+	public void setProcessDurationMilliseconds(long processDuration) {
+		this.processDurationMilliseconds = processDuration;
+	}
 
-        this.rowErrors = rowErrors;
-    }
+	public ProcessedFile getProcessedFile() {
+		return processedFile;
+	}
 
-    public Set<CountryCodeData> getCountryCodeData() {
-        return countryCodeData;
-    }
+	public void setProcessedFile(ProcessedFile processedFile) {
+		this.processedFile = processedFile;
+	}
 
-    public void setCountryCodeData(Set<CountryCodeData> countryCodeData) {
-        this.countryCodeData = countryCodeData;
-    }
+	public RowErrors getRowErrors() {
+		return rowErrors;
+	}
 
-    public Set<WordOccurrence> getWordOccurrences() {
-        return wordOccurrences;
-    }
+	public void setRowErrors(RowErrors rowErrors) {
+		if (this.rowErrors != null) {
+			this.rowErrors.setFileMetrics(null);
+		}
+		rowErrors.setFileMetrics(this);
+		this.rowErrors = rowErrors;
+	}
 
-    public void setWordOccurrences(Set<WordOccurrence> wordOccurrences) {
-        this.wordOccurrences = wordOccurrences;
-    }
+	public Set<CountryCodeData> getCountryCodeData() {
+		return countryCodeData;
+	}
 
-    public Integer getNumerOfCalls() {
-        return numerOfCalls;
-    }
+	public void setCountryCodeData(Set<CountryCodeData> countryCodeData) {
+		this.countryCodeData = countryCodeData;
+	}
 
-    public void setNumerOfCalls(Integer numerOfCalls) {
-        this.numerOfCalls = numerOfCalls;
-    }
+	public Set<WordOccurrence> getWordOccurrences() {
+		return wordOccurrences;
+	}
 
-    public Integer getNumerOfMessages() {
-        return numerOfMessages;
-    }
+	public void setWordOccurrences(Set<WordOccurrence> wordOccurrences) {
+		this.wordOccurrences = wordOccurrences;
+	}
 
-    public void setNumerOfMessages(Integer numerOfMessages) {
-        this.numerOfMessages = numerOfMessages;
-    }
+	public Integer getNumerOfCalls() {
+		return numerOfCalls;
+	}
 
-    public Integer getDifferentOriginCountryCodes() {
-        return differentOriginCountryCodes;
-    }
+	public void setNumerOfCalls(Integer numerOfCalls) {
+		this.numerOfCalls = numerOfCalls;
+	}
 
-    public void setDifferentOriginCountryCodes(Integer differentOriginCountryCodes) {
-        this.differentOriginCountryCodes = differentOriginCountryCodes;
-    }
+	public Integer getNumerOfMessages() {
+		return numerOfMessages;
+	}
 
-    public Integer getDifferentDestinationCountryCodes() {
-        return differentDestinationCountryCodes;
-    }
+	public void setNumerOfMessages(Integer numerOfMessages) {
+		this.numerOfMessages = numerOfMessages;
+	}
 
-    public void setDifferentDestinationCountryCodes(Integer differentDestinationCountryCodes) {
-        this.differentDestinationCountryCodes = differentDestinationCountryCodes;
-    }
+	public void setNumberOfCallsAndMesssages(Integer numerOfCalls, Integer numerOfMessages) {
+		this.numerOfCalls = numerOfCalls;
+		this.numerOfMessages = numerOfMessages;
+	}
+
+	public Integer getDifferentOriginCountryCodes() {
+		return differentOriginCountryCodes;
+	}
+
+	public void setDifferentOriginCountryCodes(Integer differentOriginCountryCodes) {
+		this.differentOriginCountryCodes = differentOriginCountryCodes;
+	}
+
+	public Integer getDifferentDestinationCountryCodes() {
+		return differentDestinationCountryCodes;
+	}
+
+	public void setDifferentDestinationCountryCodes(Integer differentDestinationCountryCodes) {
+		this.differentDestinationCountryCodes = differentDestinationCountryCodes;
+	}
+
+	public void setDifferentOriginAndDestinationCountryCodes(int differentOriginCountryCodes,
+			int differentDestinationCountryCodes) {
+		this.differentOriginCountryCodes = differentOriginCountryCodes;
+		this.differentDestinationCountryCodes = differentDestinationCountryCodes;
+	}
 }

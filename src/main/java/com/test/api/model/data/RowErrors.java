@@ -12,62 +12,62 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class RowErrors implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "missing_fields")
-    private Integer missingFields = 0;
+	@Column(name = "missing_fields")
+	private Integer missingFields = 0;
+ 
+	@Column(name = "messages_blank_content")
+	private Integer messagesWithBlankContent = 0;
 
-    @Column(name = "blank_content")
-    private Integer blankContent = 0;
+	@Column(name = "field_errors")
+	private Integer fieldErrors = 0;
 
-    @Column(name = "field_errors")
-    private Integer fieldErrors = 0;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "file_metrics_id", referencedColumnName = "id")
+	@JsonIgnore
+	private FileMetrics fileMetrics;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "file_metrics_id", referencedColumnName = "id")
-    @JsonIgnore
-    private FileMetrics fileMetrics;
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Integer getMissingFields() {
+		return missingFields;
+	}
 
-    public Integer getMissingFields() {
-        return missingFields;
-    }
+	public void setMissingFields(Integer missingFields) {
+		this.missingFields = missingFields;
+	}
 
-    public void setMissingFields(Integer missingFields) {
-        this.missingFields = missingFields;
-    }
+	public Integer getFieldErrors() {
+		return fieldErrors;
+	}
 
-    public Integer getBlankContent() {
-        return blankContent;
-    }
+	public void setFieldErrors(Integer fieldErrors) {
+		this.fieldErrors = fieldErrors;
+	}
 
-    public void setBlankContent(Integer blankContent) {
-        this.blankContent = blankContent;
-    }
+	public FileMetrics getFileMetrics() {
+		return fileMetrics;
+	}
 
-    public Integer getFieldErrors() {
-        return fieldErrors;
-    }
+	public void setFileMetrics(FileMetrics fileMetrics) {
+		this.fileMetrics = fileMetrics;
+	}
 
-    public void setFieldErrors(Integer fieldErrors) {
-        this.fieldErrors = fieldErrors;
-    }
+	public Integer getMessagesWithBlankContent() {
+		return messagesWithBlankContent;
+	}
 
-    public FileMetrics getFileMetrics() {
-        return fileMetrics;
-    }
-
-    public void setFileMetrics(FileMetrics fileMetrics) {
-        this.fileMetrics = fileMetrics;
-    }
+	public void setMessagesWithBlankContent(Integer messagesWithBlankContent) {
+		this.messagesWithBlankContent = messagesWithBlankContent;
+	}
 }

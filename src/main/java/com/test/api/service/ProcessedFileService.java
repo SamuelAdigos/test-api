@@ -12,23 +12,32 @@ import java.util.List;
 @Transactional
 public class ProcessedFileService {
 
-    @Autowired
-    private ProcessedFiledRepository processedFiledRepository;
+	@Autowired
+	private ProcessedFiledRepository processedFiledRepository;
+ 
+	/**
+	 * Method of saving a processed file. In case it exists, the date and metrics
+	 * are updated to the last ones obtained.
+	 * 
+	 * @param processedFile Object with the data from the processed JSON file.
+	 */
+	public void save(ProcessedFile processedFile) {
+		ProcessedFile existingFile = processedFiledRepository.findByFileDate(processedFile.getFileDate());
+		if (existingFile != null) {
+			existingFile.setFileDate(processedFile.getFileDate());
+			existingFile.setFileMetrics(processedFile.getFileMetrics());
+			processedFiledRepository.save(existingFile);
 
-    public void save(ProcessedFile processedFile) {
-        ProcessedFile existingFile = processedFiledRepository.findByFileDate(processedFile.getFileDate());
-        if (existingFile != null) {
-            processedFile.setId(existingFile.getId());
-            processedFile.setFileMetrics(existingFile.getFileMetrics());
-        }
-        processedFiledRepository.save(processedFile);
-    }
+		} else {
+			processedFiledRepository.save(processedFile);
+		}
+	}
 
-    public List<ProcessedFile> findAll() {
-        return processedFiledRepository.findAll();
-    }
+	public List<ProcessedFile> findAll() {
+		return processedFiledRepository.findAll();
+	}
 
-    public ProcessedFile findByDate(Integer date) {
-        return processedFiledRepository.findByFileDate(date);
-    }
+	public ProcessedFile findByDate(Integer date) {
+		return processedFiledRepository.findByFileDate(date);
+	}
 }

@@ -15,27 +15,28 @@ import java.util.List;
 @RequestMapping("/file")
 public class ApiController {
 
-    @Autowired
-    private FileService fileService;
+	@Autowired
+	private FileService FileService;
 
-    @GetMapping("/{date}")
-    public ResponseEntity<ProcessResponseDTO> processFile(@PathVariable Integer date){
-        return ResponseEntity.ok(fileService.processFile(date));
-    }
+	@GetMapping("/{date}")
+	public ResponseEntity<ProcessResponseDTO> processFile(@PathVariable Integer date) {
+		return ResponseEntity.ok(FileService.processFile(date));
+	}
 
-    @GetMapping("/all")
-    public ResponseEntity<List<ProcessedFile>> processFile(){
-        return ResponseEntity.ok(fileService.getFiles());
-    }
+	@GetMapping("/all")
+	public ResponseEntity<List<ProcessedFile>> processFile() {
+		return ResponseEntity.ok(FileService.getFiles());
+	}
 
-    @GetMapping("/{date}/metrics")
-    public ResponseEntity<MetricsDTO> getMetrics(@PathVariable Integer date){
-        return ResponseEntity.ok(fileService.getMetrics(date));
-    }
+	@GetMapping("/{date}/metrics")
+	public ResponseEntity<MetricsDTO> getMetrics(@PathVariable Integer date) {
+		return ResponseEntity.ok(FileService.getMetrics(date));
+	}
 
-    @GetMapping("/kpis")
-    public ResponseEntity<KpiDTO> getKpis(){
-        return ResponseEntity.ok(fileService.getKpis());
-    }
+	@GetMapping("/kpis")
+	public ResponseEntity<KpiDTO> getKpis() {
+		return ResponseEntity.ok(FileService.getKpis());
+	}
 
 }
+ 

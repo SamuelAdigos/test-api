@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /
 
-ogging:
+logging:
   level:
     org.hibernate.jpa: DEBUG
   pattern:
@@ -31,4 +31,4 @@ mcp:
   json-url: https://raw.githubusercontent.com/vas-test/test1/master/logs/
 
 word-list: YOU, ARE, FINE, HELLO, NOT
-
+ 
