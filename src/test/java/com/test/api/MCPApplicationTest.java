@@ -48,7 +48,7 @@ class MCPApplicationTest {
     }
 
     @Test
-    void convertMessageJsonToDTO() {
+    void convertCallJsonToDTO() {
         final String jsonString = "{" +
                 "\"message_type\": \"CALL\"," +
                 "\"timestamp\": 1517645700," +
@@ -79,7 +79,7 @@ class MCPApplicationTest {
     }
 
     @Test
-    void convertCallJsonToDTO() {
+    void convertMessageJsonToDTO() {
         final String jsonString = "{" +
                 "\"message_type\": \"MSG\"," +
                 "\"timestamp\": 1517559300," +
